@@ -23,7 +23,7 @@ class CreatingQuizesTable extends CakeMigration {
                     'title' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36),
                     'course_id' => array('type' => 'string', 'null' => false, 'default' => NULL,'length' => 36),
                     'is_active' => array('type' => 'boolean', 'null' => false, 'default' => NULL),
-                    'no_of_questions' => array('type' => 'boolean', 'null' => false, 'default' => NULL),
+                    'no_of_questions' => array('type' => 'integer', 'null' => false, 'default' => NULL),
                     'duration' => array('type' => 'integer', 'null' => false, 'default' => NULL),
                     'start_date' => array('type' => 'date_time', 'null' => false, 'default' => NULL),
                     'end_date' => array('type' => 'date_time', 'null' => false, 'default' => NULL),

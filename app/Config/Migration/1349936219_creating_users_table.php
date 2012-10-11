@@ -22,6 +22,8 @@ class CreatingUsersTable extends CakeMigration
                 'users' => array(
                     'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary'),
                     'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36),
+                    'username' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 255),
+                    'password' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 100),
                     'is_active' => array('type' => 'boolean', 'null' => false, 'default' => true),
                     'role' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36),
                     'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
@@ -60,6 +62,24 @@ class CreatingUsersTable extends CakeMigration
      */
     public function after($direction)
     {
+        if ($direction == 'up') {
+            $userModel = $this->generateModel('User');
+
+            //add data to the user model
+            $adminUser = array(
+                array(
+                    'username' => 'admin@ifaf.com',
+                    'password' => 'ifaf2012',
+                    'name' => 'Administrator',
+                    'is_active' => '1',
+                    'role' => 'admin'
+                )
+            );
+
+            $this->log($adminUser);
+
+            $userModel->saveAll($adminUser);
+        }
         return true;
     }
 }
